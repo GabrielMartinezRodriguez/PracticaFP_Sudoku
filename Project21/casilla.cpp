@@ -53,7 +53,12 @@ void dibujaCasilla(const tCasilla &casilla) {
 			break;
 	}
 	colorFondo(color);
-	cout << casilla.numero << " ";
+	if (casilla.estado == VACIO) {
+		cout << "  ";
+	}
+	else {
+		cout << casilla.numero << " ";
+	}
 	colorFondo(0);
 }
 
