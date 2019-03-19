@@ -50,7 +50,9 @@ void creaListaSudokus(tListaSudokus & lista) {
 
 int menuListaSudokus(const tListaSudokus &lista) {
 	int selector = -1;
+	
 	while (selector<1 || selector>lista.cont) {
+		mostrarListaSudokus(lista);
 		cin >> selector;
 	}
 	selector--;

@@ -117,7 +117,6 @@
   <ItemGroup>
     <ClCompile Include="casilla.cpp" />
     <ClCompile Include="Conjunto.cpp" />
-    <ClCompile Include="Funcionalidades.cpp" />
     <ClCompile Include="juego.cpp" />
     <ClCompile Include="listaSudokus.cpp" />
     <ClCompile Include="main.cpp" />
@@ -126,7 +125,6 @@
   <ItemGroup>
     <ClInclude Include="casilla.h" />
     <ClInclude Include="Conjunto.h" />
-    <ClInclude Include="Funcionalidades.h" />
     <ClInclude Include="juego.h" />
     <ClInclude Include="listaSudokus.h" />
     <ClInclude Include="main.h" />

@@ -12,12 +12,11 @@ int main() {
 		if (selector1 == 1) {
 			creaListaSudokus(lista);
 			cargarListaSudokus(lista);
-			mostrarListaSudokus(lista);
+			
 			selector2 = menuListaSudokus(lista);
 			puntos=JugarUnSudoku(lista.array[selector2]);
 			if (puntos != 0) {
 				cout << "Felicidades has recibido " << puntos << " puntos" << endl;
-				
 			}
 			system("pause");
 			system("cls");

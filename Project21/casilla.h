@@ -2,7 +2,7 @@
 #define _casilla
 #include <Windows.h>
 #include "Conjunto.h"
-#include "Funcionalidades.h"
+
 using namespace std;
 // Estado de cada casilla
 typedef enum { VACIO, FIJA, RELLENO} tEstadoCasilla;

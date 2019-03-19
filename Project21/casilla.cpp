@@ -2,8 +2,6 @@
 #include "casilla.h"
 
 
-
-
 //Inicialmente casilla vacia con todos los valores posibles
 void iniciaCasilla(tCasilla &casilla) {
 	casilla.estado = VACIO;
@@ -19,25 +17,32 @@ void iniciaCasilla(tCasilla &casilla) {
 void rellenaCasilla(tCasilla & casilla, char c, bool fija ) { //fija es true cuando se lee de fichero
 	int Numero;
 	
+	/*si el caracter es inexistente, el estado de la casilla
+	se declara vacío, y el número 0 (null)*/
 	if (c == ' ') {
 		casilla.estado = VACIO;
 		casilla.numero = NULL;
 	}
+	
+	//en caso contrario...
 	else {
 		
+		//el estado es fijo o relleno
 		if (fija) {
 			casilla.estado = FIJA;
 		}
 		else {
 			casilla.estado = RELLENO;
 		}
-		
+		 
+		//el caracter se transforma a número
 		Numero = c - '0';
-		casilla.numero = Numero;
+		casilla.numero = Numero; //y se guarda en el lugar correspondiente de la estructura
 		
 	}
 	
 }
+
 // Dibuja una casilla
 void dibujaCasilla(const tCasilla &casilla) {
 	int color;
@@ -53,29 +58,35 @@ void dibujaCasilla(const tCasilla &casilla) {
 			break;
 	}
 	colorFondo(color);
-	if (casilla.estado == VACIO) {
-		cout << "  ";
+	if (casilla.estado != VACIO) {
+		cout << casilla.numero;
 	}
 	else {
-		cout << casilla.numero << " ";
+		cout << " ";
 	}
 	colorFondo(0);
+	
 }
 
-// Determina si una casilla aun no rellena tiene un unico valor posible
+//Determina si una casilla aun no rellena tiene un unico valor posible
+//recibe la casilla y el numero 
 //Devuelve falso para las casillas fijas o ya rellenas
 bool esSimple(const tCasilla & casilla, int & numero){
 	bool devolver;
+
+	//en caso de la casilla estar rellena o ser fija, automaticamente se devuelve falso
 	if (casilla.estado == RELLENO || casilla.estado == FIJA) {
 		devolver = false;
 	}
-	devolver = esUnitario(casilla.posibles, numero);
+	else {
+		devolver = esUnitario(casilla.posibles, numero);
+	}
+	
 	return devolver;
 
 }
 
 // Establece el color de fondo de una casilla
-
 void colorFondo(int color) {
 	HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(handle, 15 | (color << 4));

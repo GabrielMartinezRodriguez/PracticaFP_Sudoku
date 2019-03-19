@@ -58,18 +58,18 @@ void ReajustarPosibles(tTablero &tablero, int fila, int col, int c,string Modo) 
 	}
 	else if (Modo=="Quitar") {
 		for (int i = 0; i < 9; i++) {
-			if (esPosible(tablero, fila, col, c)) {
+			if (esPosible(tablero, fila, i, c)) {
 				addElemento(tablero[i][col].posibles, c);
 			}
 		}
 		for (int j = 0; j < 9; j++) {
-			if (esPosible(tablero, fila, col, c)) {
+			if (esPosible(tablero, j, col, c)) {
 				addElemento(tablero[fila][j].posibles, c);
 			}
 		}
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
-				if (esPosible(tablero, fila, col, c)) {
+				if (esPosible(tablero, EsquinaFila + i, EsquinaColumna + j, c)) {
 					addElemento(tablero[EsquinaFila + i][EsquinaColumna + j].posibles, c);
 				}
 				
@@ -117,14 +117,13 @@ bool esPosible(tTablero &tablero,int fila,int col,int c) {
 bool ponerNum(tTablero &tablero, int x, int y, int c) {
 	char CtoAscii;
 	bool devolver = false;
-	if (tablero[x][y].estado == VACIO) {
 		if (pertenece(tablero[x][y].posibles, c)) {
 			CtoAscii = c + '0';
 			rellenaCasilla(tablero[x][y], CtoAscii,false);
 			ReajustarPosibles(tablero, x, y, c,"Poner");
 			devolver = true;
 		}
-	}
+	
 	return devolver;
 }
 //SE UTILIZA PARA BORRAR UN NUMERO DE UNA CASILLA RELLENA. DEVUELVE TRUE SI SE PUDO BORRAR EL NUMERO DE LA CASILLA
@@ -175,9 +174,21 @@ void rellenarSimples(tTablero &tablero) {
 }
 //RECIBE EL TABLERO, Y LO MUESTRA POR PANTALLA
 void dibujarTablero(const tTablero &tablero) {
+	cout <<"-------------------" << endl;
 	for (int i = 0; i < 9; i++) {
+		
+		cout << "|";
 		for (int j = 0; j < 9; j++) {
 			dibujaCasilla(tablero[i][j]);
+			if (j % 3 != 2) {
+				cout << " ";
+			}
+			if (j % 3 == 2) {
+				cout << "|";
+			}
+		}
+		if (i % 3 == 2) {
+			cout <<endl<< "-------------------";
 		}
 		cout << endl;
 	}

@@ -77,6 +77,7 @@ int JugarUnSudoku(tSudoku &sudoku){
 				Opcion5(juego);
                 break;
         }
+		system("pause");
 		if (opcion != 0) {
 			mostrarJuego(juego);
 		}
@@ -102,10 +103,16 @@ void Opcion2(tJuego &juego){
         cout<<"Introduzca un numero entre 1 y 9"<<endl;
         cin>>numero;
     }while(numero<1||numero>9);
-    Hasidoposible=ponerNum(juego.tablero,i,j,numero);
-    if(!Hasidoposible){
-        cout<<"No ha sido posible poner el numero"<<endl;
-    }
+	if (juego.tablero[i][j].estado == VACIO) {
+		Hasidoposible = ponerNum(juego.tablero, i, j, numero);
+		if (!Hasidoposible) {
+			cout << "No es posible colocar el valor en la casilla seleccionada" << endl;
+		}
+	}
+	else {
+		cout << "No es posible poner un numero en una casilla no vacia" << endl;
+	}
+    
     
 }
 void Opcion3(tJuego &juego){
