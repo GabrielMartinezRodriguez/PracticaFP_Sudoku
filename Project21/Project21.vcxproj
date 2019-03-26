@@ -118,6 +118,8 @@
     <ClCompile Include="casilla.cpp" />
     <ClCompile Include="Conjunto.cpp" />
     <ClCompile Include="juego.cpp" />
+    <ClCompile Include="Jugador.cpp" />
+    <ClCompile Include="listaJugadores.cpp" />
     <ClCompile Include="listaSudokus.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="tablero.cpp" />
@@ -126,6 +128,8 @@
     <ClInclude Include="casilla.h" />
     <ClInclude Include="Conjunto.h" />
     <ClInclude Include="juego.h" />
+    <ClInclude Include="Jugador.h" />
+    <ClInclude Include="listaJugadores.h" />
     <ClInclude Include="listaSudokus.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="tablero.h" />

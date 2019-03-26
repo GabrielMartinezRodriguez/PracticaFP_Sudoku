@@ -94,15 +94,15 @@ void Opcion1(tJuego &juego){
     PedirCasilla(i,j);
     mostrar(juego.tablero[i][j].posibles);
 }
-void Opcion2(tJuego &juego){
-    int i,j,numero;
-    bool Hasidoposible;
-    PedirCasilla(i,j);
-	
-    do {
-        cout<<"Introduzca un numero entre 1 y 9"<<endl;
-        cin>>numero;
-    }while(numero<1||numero>9);
+void Opcion2(tJuego &juego) {
+	int i, j, numero;
+	bool Hasidoposible;
+	PedirCasilla(i, j);
+
+	do {
+		cout << "Introduzca un numero entre 1 y 9" << endl;
+		cin >> numero;
+	} while (numero < 1 || numero>9);
 	if (juego.tablero[i][j].estado == VACIO) {
 		Hasidoposible = ponerNum(juego.tablero, i, j, numero);
 		if (!Hasidoposible) {
@@ -112,20 +112,19 @@ void Opcion2(tJuego &juego){
 	else {
 		cout << "No es posible poner un numero en una casilla no vacia" << endl;
 	}
-    
-    
 }
+
 void Opcion3(tJuego &juego){
     
     int i,j;
     bool Hasidoposible;
     PedirCasilla(i,j);
-    Hasidoposible=borraNum(juego.tablero,i,j);
-    if(!Hasidoposible){
-        cout<<"No ha sido posible borrar el numero"<<endl;
-    }
-
+	Hasidoposible = borraNum(juego.tablero, i, j);
+	if(!Hasidoposible){
+		cout<<"No ha sido posible borrar el numero, ya que no es una casilla rellena"<<endl;
+	}
 }
+
 void Opcion4(tJuego &juego, tSudoku &sudoku){
     
     iniciaJuego(juego,sudoku);

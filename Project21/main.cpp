@@ -12,7 +12,6 @@ int main() {
 		if (selector1 == 1) {
 			creaListaSudokus(lista);
 			cargarListaSudokus(lista);
-			
 			selector2 = menuListaSudokus(lista);
 			puntos=JugarUnSudoku(lista.array[selector2]);
 			if (puntos != 0) {
@@ -25,3 +24,4 @@ int main() {
 	system("pause");
 	return 0;
 }
+i
