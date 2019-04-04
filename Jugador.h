@@ -1,6 +1,10 @@
 #ifndef _Jugador
 #define _Jugador
-#include "main.h" 
+#include <iostream>
+#include <Windows.h>
+#include <string>
+#include <fstream>
+using namespace std;
 
 struct tJugador {
 	string Id;

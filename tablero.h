@@ -1,8 +1,9 @@
 #ifndef _tablero
 #define _tablero
+#include <iostream>
+#include <Windows.h>
 #include <string>
 #include <fstream>
-#include <iostream>
 #include "casilla.h"
 
 using namespace std;

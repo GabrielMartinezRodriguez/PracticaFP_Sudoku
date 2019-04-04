@@ -12,13 +12,14 @@ void creaListaVacia(tListaJugadores & lista) {
 }
 bool cargar(tListaJugadores & lista) {
 	ifstream  fichero;
+	fichero.open("listaJugadores.txt");
 	int contador = 0;
 	while (!fichero.eof()) {
 		fichero >> lista.jugadores[contador].Id;
 		fichero >> lista.jugadores[contador].puntos;
 		contador++;
 	}
-	lista.contador = contador;
+	lista.contador = contador-1;
 	return true;
 }
 void mostrar(const tListaJugadores & lista) {
@@ -89,7 +90,7 @@ bool buscar(const tListaJugadores & lista, string id, int &pos) {
 			Encontrado = true;
 			pos = Centro;
 		}
-		else if (lista.jugadores[Centro].Id<id){
+		else if (id<lista.jugadores[Centro].Id){
 			Final = Centro - 1;
 		}
 		else {
@@ -114,6 +115,7 @@ void InsertarJugador(tListaJugadores &lista, const tJugador &Jugador, const int 
 }
 tListaJugadores ordenarPorRanking(const tListaJugadores &lista) {
 	tListaJugadores CopiaLista;
+	creaListaVacia(CopiaLista);
 	int contador1 = 1;
 	int contador2 = 0;
 	bool Encontrado = false;
@@ -123,15 +125,14 @@ tListaJugadores ordenarPorRanking(const tListaJugadores &lista) {
 
 	while (contador1 < lista.contador) {
 		while (contador2 < contador1&&!Encontrado) {
-			if (menor(lista.jugadores[contador1], CopiaLista.jugadores[contador2])) {
+			if (!menor(lista.jugadores[contador1], CopiaLista.jugadores[contador2])) {
 				Encontrado = true;
 			}
 			else {
 				contador2++;
 			}
-			InsertarJugador(CopiaLista, lista.jugadores[contador1], contador2);
 		}
-
+		InsertarJugador(CopiaLista, lista.jugadores[contador1], contador2);
 		contador1++;
 		contador2 = 0;
 		Encontrado = false;

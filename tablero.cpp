@@ -1,5 +1,5 @@
 #include "tablero.h"
-#include <fstream>
+
 /*RECIBE UN TABLERO SIN INICIALIZAR Y INICIALIZA TODAS LAS CASILLAS A ESTADO VACIO*/
 void iniciaTablero(tTablero &tablero) {
 	for (int i = 0; i < 9; i++) {
@@ -59,12 +59,12 @@ void ReajustarPosibles(tTablero &tablero, int fila, int col, int c,string Modo) 
 	else if (Modo=="Quitar") {
 		for (int i = 0; i < 9; i++) {
 			if (esPosible(tablero, fila, i, c)) {
-				addElemento(tablero[i][col].posibles, c);
+				addElemento(tablero[fila][i].posibles, c);
 			}
 		}
 		for (int j = 0; j < 9; j++) {
 			if (esPosible(tablero, j, col, c)) {
-				addElemento(tablero[fila][j].posibles, c);
+				addElemento(tablero[j][col].posibles, c);
 			}
 		}
 		for (int i = 0; i < 3; i++) {

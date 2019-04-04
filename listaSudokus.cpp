@@ -12,7 +12,7 @@ bool cargarListaSudokus(tListaSudokus & lista) {
 		    contador++;
 		}
 		
-		lista.cont = contador;
+		lista.cont = contador-1;
 		return true;
 	}
 	else {
@@ -85,6 +85,7 @@ bool registrarSudoku(tListaSudokus & lista) {
 			cin >> Sudoku.nivel;
 			Posicion = buscarPos(lista, Sudoku);
 			Insertar(lista, Sudoku, Posicion);
+			guardar(lista);
 			return true;
 		}
 		else {

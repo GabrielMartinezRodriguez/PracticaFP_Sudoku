@@ -1,14 +1,15 @@
 #ifndef _juego
 #define _juego
-#include <windows.h>
+
+
 #include <iostream>
+#include <Windows.h>
+#include <string>
 #include <fstream>
-#include <locale.h>
-#include <iomanip>     
-#include <cmath>
-#include <conio.h>
 #include "tablero.h"
 using namespace std;
+
+
 
 // Tipos de Sudokus
 typedef enum { FACIL, MEDIO, DIFICIL } tNivelSudoku;

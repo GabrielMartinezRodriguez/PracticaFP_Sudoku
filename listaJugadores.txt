@@ -1,0 +1,10 @@
+a 1
+b 6
+capullo 1
+dadi 1
+gabi 4
+gabisito 1
+gaci 4
+lambo 7
+paquito 1
+rata 1

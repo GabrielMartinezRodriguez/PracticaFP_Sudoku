@@ -56,9 +56,6 @@
     <ClInclude Include="Conjunto.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="main.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="listaJugadores.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>

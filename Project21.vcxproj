@@ -131,7 +131,6 @@
     <ClInclude Include="Jugador.h" />
     <ClInclude Include="listaJugadores.h" />
     <ClInclude Include="listaSudokus.h" />
-    <ClInclude Include="main.h" />
     <ClInclude Include="tablero.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

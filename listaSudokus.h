@@ -1,7 +1,10 @@
 #ifndef _listaSudokus
 #define _listaSudokus
-#include <algorithm>
+#include <iostream>
+#include <Windows.h>
 #include <string>
+#include <fstream>
+using namespace std;
 #include "juego.h"
 
 using namespace std;

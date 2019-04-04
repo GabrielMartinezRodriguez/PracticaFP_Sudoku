@@ -1,6 +1,9 @@
 #ifndef _casilla
 #define _casilla
+#include <iostream>
 #include <Windows.h>
+#include <string>
+#include <fstream>
 #include "Conjunto.h"
 
 using namespace std;
