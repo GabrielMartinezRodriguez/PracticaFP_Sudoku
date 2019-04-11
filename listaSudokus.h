@@ -31,4 +31,5 @@ int buscarPos(const tListaSudokus & lista, const tSudoku &sudoku);
 bool buscarFichero(const tListaSudokus & lista, string nombreFich);
 bool registrarSudoku(tListaSudokus & lista);
 bool guardar(const tListaSudokus & lista);
+bool BorrarSudoku(tListaSudokus &lista);
 #endif

@@ -10,6 +10,7 @@ void creaListaVacia(tListaJugadores & lista) {
 		contador++;
 	}
 }
+
 bool cargar(tListaJugadores & lista) {
 	ifstream  fichero;
 	fichero.open("listaJugadores.txt");
@@ -25,12 +26,14 @@ bool cargar(tListaJugadores & lista) {
 void mostrar(const tListaJugadores & lista) {
 	int contador = 0;
 	string mostrar;
+	cout << "JUGADORES: " << endl;
 	while (contador < lista.contador) {
 		mostrar = toString(lista.jugadores[contador]);
 		cout <<contador+1<<"- "<<mostrar<<endl;
 		contador++;
 	}
 }
+
 bool guardar(const tListaJugadores &lista) {
 	int contador = 0;
 	string jugador;
@@ -48,6 +51,7 @@ bool guardar(const tListaJugadores &lista) {
 	}
 	return true;
 }
+
 void puntuarJugador(tListaJugadores & lista, int puntos) {
 	string id;
 	int pos,selector;
@@ -102,10 +106,11 @@ bool buscar(const tListaJugadores & lista, string id, int &pos) {
 	}
 	return Encontrado;
 }
+
 void InsertarJugador(tListaJugadores &lista, const tJugador &Jugador, const int pos) {
 	int contador = lista.contador - 1;
 	while (contador >= pos) {
-		lista.jugadores[contador + 1].Id = lista.jugadores[contador ].Id;
+		lista.jugadores[contador + 1].Id = lista.jugadores[contador].Id;
 		lista.jugadores[contador + 1].puntos = lista.jugadores[contador].puntos;
 		contador--;
 	}
@@ -113,29 +118,90 @@ void InsertarJugador(tListaJugadores &lista, const tJugador &Jugador, const int 
 	lista.jugadores[pos].puntos = Jugador.puntos;
 	lista.contador++;
 }
+
 tListaJugadores ordenarPorRanking(const tListaJugadores &lista) {
 	tListaJugadores CopiaLista;
 	creaListaVacia(CopiaLista);
-	int contador1 = 1;
-	int contador2 = 0;
+	tJugador Aux;
+	int contador1;
+	int contador2;
+	int selector;
 	bool Encontrado = false;
-	CopiaLista.jugadores[0].Id = lista.jugadores[0].Id;
-	CopiaLista.jugadores[0].puntos = lista.jugadores[0].puntos;
-	CopiaLista.contador++;
-
-	while (contador1 < lista.contador) {
-		while (contador2 < contador1&&!Encontrado) {
-			if (!menor(lista.jugadores[contador1], CopiaLista.jugadores[contador2])) {
-				Encontrado = true;
+	cout << "Seleccione el metodo de ordenacion que desea: "<<endl;
+	cout << "1-Inserccion" << endl;
+	cout << "2-Metodo de la burbuja" << endl;
+	cin >> selector;
+	if (selector == 1) {
+		CopiaLista.jugadores[0].Id = lista.jugadores[0].Id;
+		CopiaLista.jugadores[0].puntos = lista.jugadores[0].puntos;
+		CopiaLista.contador++;
+		contador1 = 1;
+		contador2 = 0;
+		while (contador1 < lista.contador) {
+			while (contador2 < contador1 && !Encontrado) {
+				if (!menor(lista.jugadores[contador1], CopiaLista.jugadores[contador2])) {
+					Encontrado = true;
+				}
+				else {
+					contador2++;
+				}
 			}
-			else {
+			InsertarJugador(CopiaLista, lista.jugadores[contador1], contador2);
+			contador1++;
+			contador2 = 0;
+			Encontrado = false;
+		}
+	}
+	else if (selector == 2) {
+		CopiaLista = CopiarLista(lista);
+		contador1 = CopiaLista.contador;
+		contador2 = 0;
+		while (contador1 > 0) {
+			while (contador2 < contador1-1) {
+				if (menor(CopiaLista.jugadores[contador2], CopiaLista.jugadores[contador2+1])) {
+					Aux.Id = CopiaLista.jugadores[contador2].Id;
+					Aux.puntos = CopiaLista.jugadores[contador2].puntos;
+					CopiaLista.jugadores[contador2].Id = CopiaLista.jugadores[contador2 + 1].Id;
+					CopiaLista.jugadores[contador2].puntos = CopiaLista.jugadores[contador2 + 1].puntos;
+					CopiaLista.jugadores[contador2 + 1].Id = Aux.Id;
+					CopiaLista.jugadores[contador2 + 1].puntos = Aux.puntos;
+				}
 				contador2++;
 			}
+			contador1--;
+			contador2 = 0;
 		}
-		InsertarJugador(CopiaLista, lista.jugadores[contador1], contador2);
-		contador1++;
-		contador2 = 0;
-		Encontrado = false;
 	}
+	else {
+		cout << "Seleccion no valida" << endl;
+	}
+	
 	return CopiaLista;
+}
+void annadirJugador(tListaJugadores &lista) {
+	tJugador NewPlayer;
+	bool Encontrado;
+	int pos;
+	NewPlayer.puntos = 0;
+	if (lista.contador < MAX_JUGADORES) {
+		cout << "Introduzca el id del jugador que quiere añadir: ";
+		cin >> NewPlayer.Id;
+		Encontrado = buscar(lista, NewPlayer.Id, pos);
+		if (!Encontrado) {
+			InsertarJugador(lista, NewPlayer, pos);
+			cout << "Jugador añadido con exito" << endl;
+			guardar(lista);
+		}
+		else {
+			cout << "No se ha podido añadir el jugador, ya que ya existe un jugador con ese id" << endl;
+		}
+	}
+	else {
+		cout << "La lista de jugadores esta llena" << endl;
+	}
+	
+}
+
+tListaJugadores CopiarLista(const tListaJugadores &lista) {
+	return lista;
 }

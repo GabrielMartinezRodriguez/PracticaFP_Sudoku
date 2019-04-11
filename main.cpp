@@ -43,6 +43,14 @@ int main() {
 			registrarSudoku(ListaSudokus);
 			system("pause");
 			break;
+		case 5:
+			annadirJugador(ListaJugadores);
+			system("pause");
+			break;
+		case 6:
+			BorrarSudoku(ListaSudokus);
+			system("pause");
+			break;
 
 		}
 	} while (selector1 != 0);
@@ -52,11 +60,13 @@ int main() {
 int MenuM() {
 	int selector = -1;
 
-	while (selector < 0 || selector>4) {
+	while (selector < 0 || selector>6) {
 		cout << "1.- Jugar" << endl;
 		cout << "2.- Ver jugadores ordenados por identificador" << endl;
 		cout << "3.- Ver jugadores ordenados por puntos" << endl;
 		cout << "4.- Incorporar sudoku" << endl;
+		cout << "5.- Añadir un jugador " << endl;
+		cout << "6.- Borrar un sudoku" << endl;
 		cout << "0.- Salir" << endl;
 		cin >> selector;
 

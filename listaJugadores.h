@@ -21,4 +21,6 @@ void puntuarJugador(tListaJugadores & lista, int puntos);//Añade los puntos a un
 bool buscar(const tListaJugadores & lista, string id, int &pos);//Busca un id en la lista de jugadores, si este ya esta en la lista devuelve su posicion y si no esta devuelve la posicion en la que deveria ir
 void InsertarJugador(tListaJugadores &lista, const tJugador &Jugador, const int pos);//Inserta el jugador en la posicion indicada por el parametro pos
 tListaJugadores ordenarPorRanking(const tListaJugadores &lista);//Hace una copia de la lista de jugadores y la ordena por ranking y posteriormente la devuelve
+void annadirJugador(tListaJugadores &lista);
+tListaJugadores CopiarLista(const tListaJugadores &lista);
 #endif

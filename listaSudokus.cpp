@@ -20,6 +20,7 @@ bool cargarListaSudokus(tListaSudokus & lista) {
 	}
 	
 }
+
 void mostrarListaSudokus(const tListaSudokus &lista) {
 	int contador = 0;
 	while (contador < lista.cont) {
@@ -39,6 +40,7 @@ void mostrarListaSudokus(const tListaSudokus &lista) {
 		contador++;
 	}
 }
+
 void creaListaSudokus(tListaSudokus & lista) {
 	int contador = 0;
 	lista.cont = 0;
@@ -58,6 +60,7 @@ int menuListaSudokus(const tListaSudokus &lista) {
 	selector--;
 	return selector;
 }
+
 bool guardar(const tListaSudokus & lista) {
 	int contador = 0;
 	ofstream fichero;
@@ -74,6 +77,7 @@ bool guardar(const tListaSudokus & lista) {
 	}
 	return true;
 }
+
 bool registrarSudoku(tListaSudokus & lista) {
 	tSudoku Sudoku;
 	int Posicion;
@@ -112,26 +116,22 @@ bool registrarSudoku(tListaSudokus & lista) {
 		cout << "La lista de sudokus esta llena" << endl;
 		return false;
 	}
-	
-	
-
 }
-bool buscarFichero(const tListaSudokus & lista, string nombreFich) {
-	ifstream listaSudokus;
-	string Fichero;
-	int puntos;
-	bool Encontrado = false;
-	listaSudokus.open("listaSudokus.txt");
 
-	while (!listaSudokus.eof()&&!Encontrado) {
-		listaSudokus >> Fichero;
-		listaSudokus >> puntos;
-		if (Fichero == nombreFich) {
+bool buscarFichero(const tListaSudokus & lista, string nombreFich) {
+	int puntos,contador=0;
+	bool Encontrado = false;
+	
+	while (contador<lista.cont&&!Encontrado) {
+		if (lista.array[contador].fichero == nombreFich) {
 			Encontrado = true;
+			
 		}
+		contador++;
 	}
 	return Encontrado;
 }
+
 int buscarPos(const tListaSudokus & lista, const tSudoku &sudoku) {
 	int Inicio=0,Final=lista.cont-1,Centro=0;
 	
@@ -146,6 +146,7 @@ int buscarPos(const tListaSudokus & lista, const tSudoku &sudoku) {
 	}
 	return Inicio;
 }
+
 bool operator<(const tSudoku &S1, const tSudoku &S2) {
 	if (S1.nivel >= S2.nivel) {
 		if (S1.nivel == S2.nivel) {
@@ -159,6 +160,7 @@ bool operator<(const tSudoku &S1, const tSudoku &S2) {
 		return true;
 	}
 }
+
 void Insertar(tListaSudokus &lista,const tSudoku &Sudoku,const int Posicion) {
 	int cont = lista.cont-1;
 	while (cont>=Posicion) {
@@ -169,4 +171,21 @@ void Insertar(tListaSudokus &lista,const tSudoku &Sudoku,const int Posicion) {
 	lista.array[Posicion].fichero = Sudoku.fichero;
 	lista.array[Posicion].nivel = Sudoku.nivel;
 	lista.cont++;
+}
+bool BorrarSudoku(tListaSudokus &lista) {
+	int selector = 0, contador ;
+	bool correcto;
+	cout << "Seleccione el sudoku que desea borrar:" << endl;;
+	selector=menuListaSudokus(lista);
+	contador = selector ;
+	while (contador < lista.cont) {
+		lista.array[contador].fichero = lista.array[contador + 1].fichero;
+		lista.array[contador].nivel = lista.array[contador + 1].nivel;
+		contador++;
+	}
+	lista.array[lista.cont - 1].fichero = "";
+	lista.array[lista.cont - 1].nivel = NULL;
+	lista.cont--;
+	correcto = guardar(lista);
+	return correcto;
 }
