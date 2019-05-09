@@ -8,10 +8,13 @@ using namespace std;
 #include "Jugador.h"
 
 const int  MAX_JUGADORES = 10;
+typedef tJugador *tPtrJugador;
 struct tListaJugadores {
-	tJugador jugadores[MAX_JUGADORES];
+	tPtrJugador *jugadores ;
 	int contador;
+	int maximo;
 };
+
 
 void creaListaVacia(tListaJugadores & lista);//Inicializa la lista de jugadores a una lista vacia
 bool cargar(tListaJugadores & lista);//Carga a memoria los jugadores del fichero listajugadores.txt. Devuelve true si ha sido posible y false si no
@@ -23,4 +26,6 @@ void InsertarJugador(tListaJugadores &lista, const tJugador &Jugador, const int 
 tListaJugadores ordenarPorRanking(const tListaJugadores &lista);//Hace una copia de la lista de jugadores y la ordena por ranking y posteriormente la devuelve
 void annadirJugador(tListaJugadores &lista);
 tListaJugadores CopiarLista(const tListaJugadores &lista);
+void ampliar(tListaJugadores &lista);
+void borrarListaJugadores(tListaJugadores & lista);
 #endif

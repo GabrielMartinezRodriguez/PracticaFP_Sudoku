@@ -12,6 +12,7 @@ int main() {
 	int puntos;
 	tListaSudokus ListaSudokus;
 	tListaJugadores ListaJugadores;
+	tListaJugadores Copia;
 	creaListaSudokus(ListaSudokus);
 	cargarListaSudokus(ListaSudokus);
 	creaListaVacia(ListaJugadores);
@@ -36,7 +37,9 @@ int main() {
 			system("pause");
 			break;
 		case 3:
-			mostrar(ordenarPorRanking(ListaJugadores));
+			Copia = ordenarPorRanking(ListaJugadores);
+			mostrar(Copia);
+			borrarListaJugadores(Copia);
 			system("pause");
 			break;
 		case 4:
@@ -54,6 +57,7 @@ int main() {
 
 		}
 	} while (selector1 != 0);
+	borrarListaJugadores(ListaJugadores);
 	system("pause");
 	return 0;
 }
