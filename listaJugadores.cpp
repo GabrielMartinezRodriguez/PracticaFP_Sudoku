@@ -20,6 +20,7 @@ bool cargar(tListaJugadores & lista) {
 			fichero >> lista.jugadores[contador]->puntos;
 			contador++;
 		}
+		delete lista.jugadores[contador - 1];
 		lista.contador = contador - 1;
 		fichero.close();
 		return true;

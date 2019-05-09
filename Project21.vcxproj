@@ -126,6 +126,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="casilla.h" />
+    <ClInclude Include="CheckML.h" />
     <ClInclude Include="Conjunto.h" />
     <ClInclude Include="juego.h" />
     <ClInclude Include="Jugador.h" />
