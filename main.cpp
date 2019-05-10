@@ -8,8 +8,7 @@
 using namespace std;
 int MenuM();
 int main() {
-	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-	int selector1 = 0;
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);	int selector1 = 0;
 	int selector2 = 0;
 	int puntos;
 	tListaSudokus ListaSudokus;

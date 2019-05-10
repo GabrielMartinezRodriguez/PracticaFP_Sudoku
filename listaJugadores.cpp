@@ -63,13 +63,13 @@ bool guardar(const tListaJugadores &lista) {
 void puntuarJugador(tListaJugadores & lista, int puntos) {
 	string id;
 	int pos,selector;
-	bool Encontrado, Salir = false;;
+	bool Encontrado=false, Salir = false;;
 	tJugador Jugador;
 	Jugador.puntos = 0;
 	while (!Salir) {
 		cout << "Introduzca su Identificador de jugador para poder puntuarlo: ";
 		cin >> id;
-		Encontrado = buscar(lista, id, pos);
+		pos = buscar(lista, id,Encontrado,0,lista.contador-1);
 
 		if (Encontrado) {
 			modificarJugador(*lista.jugadores[pos], puntos);
@@ -86,26 +86,25 @@ void puntuarJugador(tListaJugadores & lista, int puntos) {
 	}
 	guardar(lista);
 }
-bool buscar(const tListaJugadores & lista, string id, int &pos) {
-	int Centro, Inicio = 0, Final = lista.contador - 1;
-	bool Encontrado = false;
-	while (Inicio <= Final && !Encontrado) {
-		Centro = (Inicio + Final) / 2;
-		if (lista.jugadores[Centro]->Id == id) {
-			Encontrado = true;
-			pos = Centro;
-		}
-		else if (id<lista.jugadores[Centro]->Id){
-			Final = Centro - 1;
-		}
-		else {
-			Inicio = Centro + 1;
-		}
+int buscar(const tListaJugadores & lista, const string &id, bool &Encontrado,int Inicio,int Final) {
+	int Centro,pos;
+	Centro = (Inicio + Final) / 2;
+	//COMPROBAMOS SI ES UN CASO BASE PARA RETORNAR UN VALOR
+	if (Inicio > Final) {
+		return Inicio;
 	}
-	if (!Encontrado) {
-		pos = Inicio;
+	else if (lista.jugadores[Centro]->Id == id) {
+		Encontrado = true;
+		return Centro;
 	}
-	return Encontrado;
+	//UNA VEZ COMPROBAMOS QUE NO ES UN CASO BASE, DECIDIMOS LLAMAR DE NUEVO A LA FUNCION BUSCAR PERO TENIENDO EN CUENTA EL INICIO Y FINAL EN FUNCION DEL RESULTADO DE LA COMPARACION
+	if (id < lista.jugadores[Centro]->Id) {
+		pos=buscar(lista, id, Encontrado, Inicio, Centro - 1);
+	}
+	else {
+		pos=buscar(lista, id, Encontrado, Centro+1,Final);
+	}
+	return pos;
 }
 
 void InsertarJugador(tListaJugadores &lista, const tJugador &Jugador, const int pos) {
@@ -190,13 +189,13 @@ tListaJugadores ordenarPorRanking(const tListaJugadores &lista) {
 }
 void annadirJugador(tListaJugadores &lista) {
 	tJugador NewPlayer;
-	bool Encontrado;
+	bool Encontrado=false;
 	int pos;
 	NewPlayer.puntos = 0;
 	
 	cout << "Introduzca el id del jugador que quiere añadir: ";
 	cin >> NewPlayer.Id;
-	Encontrado = buscar(lista, NewPlayer.Id, pos);
+	pos = buscar(lista, NewPlayer.Id,Encontrado,0,lista.contador-1);
 	if (!Encontrado) {
 		InsertarJugador(lista, NewPlayer, pos);
 		cout << "Jugador añadido con exito" << endl;
