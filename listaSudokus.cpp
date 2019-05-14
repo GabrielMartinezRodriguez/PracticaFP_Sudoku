@@ -87,7 +87,7 @@ bool registrarSudoku(tListaSudokus & lista) {
 		cout << "Introduzca el fichero que contiene el sudoku en la carpeta del juego y posteriormente,"<<endl<<"introduzca el nombre del fichero (con la extension .txt): ";
 		cin >> Sudoku.fichero;
 		
-		if (!buscarFichero(lista, Sudoku.fichero)) {
+		if (!buscarFichero(lista, Sudoku.fichero,0)) {
 			fichero.open(Sudoku.fichero);
 			if (fichero.is_open()) {
 				cout << "Introduzca el nivel de dificultad:" << endl << "0-Facil" << endl << "1-Medio" << endl << "2-Dificil" << endl;
@@ -118,16 +118,17 @@ bool registrarSudoku(tListaSudokus & lista) {
 	}
 }
 
-bool buscarFichero(const tListaSudokus & lista, string nombreFich) {
-	int puntos,contador=0;
+bool buscarFichero(const tListaSudokus & lista, string nombreFich,int contador) {
 	bool Encontrado = false;
-	
-	while (contador<lista.cont&&!Encontrado) {
-		if (lista.array[contador].fichero == nombreFich) {
-			Encontrado = true;
-			
-		}
-		contador++;
+	if (lista.array[contador].fichero == nombreFich) {
+		return true;
+	}
+	contador++;
+	if (contador >= lista.cont) {
+		return false;
+	}
+	else {
+		buscarFichero(lista, nombreFich, contador);
 	}
 	return Encontrado;
 }

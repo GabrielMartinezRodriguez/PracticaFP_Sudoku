@@ -4,18 +4,16 @@
 #include "juego.h"
 #include "listaSudokus.h"
 #include "listaJugadores.h"
-#include "checkML.h"
+#include "CheckML.h"
 using namespace std;
 int MenuM();
 int main() {
-	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-	int selector1 = 0;
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);	int selector1 = 0;
 	int selector2 = 0;
 	int puntos;
-	
 	tListaSudokus ListaSudokus;
 	tListaJugadores ListaJugadores;
-	tListaJugadores CopiaLista;
+	tListaJugadores Copia;
 	creaListaSudokus(ListaSudokus);
 	cargarListaSudokus(ListaSudokus);
 	creaListaVacia(ListaJugadores);
@@ -40,9 +38,9 @@ int main() {
 			system("pause");
 			break;
 		case 3:
-			CopiaLista = ordenarPorRanking(ListaJugadores);
-			mostrar(CopiaLista);
-			borrarListaJugadores(CopiaLista);
+			Copia = ordenarPorRanking(ListaJugadores);
+			mostrar(Copia);
+			borrarListaJugadores(Copia);
 			system("pause");
 			break;
 		case 4:
@@ -60,6 +58,7 @@ int main() {
 
 		}
 	} while (selector1 != 0);
+	borrarListaJugadores(ListaJugadores);
 	system("pause");
 	return 0;
 }

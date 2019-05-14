@@ -173,23 +173,54 @@ void rellenarSimples(tTablero &tablero) {
 	}
 }
 //RECIBE EL TABLERO, Y LO MUESTRA POR PANTALLA
-void dibujarTablero(const tTablero &tablero) {
-	cout <<"-------------------" << endl;
-	for (int i = 0; i < 9; i++) {
-		
-		cout << "|";
-		for (int j = 0; j < 9; j++) {
-			dibujaCasilla(tablero[i][j]);
-			if (j % 3 != 2) {
-				cout << " ";
-			}
-			if (j % 3 == 2) {
-				cout << "|";
-			}
-		}
-		if (i % 3 == 2) {
-			cout <<endl<< "-------------------";
-		}
-		cout << endl;
+
+void dibujarTablero(const tTablero &tablero,int x,int y) {
+	int color;
+	switch (tablero[x][y].estado) {
+	case VACIO:
+		color = PALETA[0];
+		break;
+	case RELLENO:
+		color = PALETA[2];
+		break;
+	case FIJA:
+		color = PALETA[1];
+		break;
 	}
+	if (x == 0 && y == 0) {
+		cout << "-------------------"<<endl;
+	}
+	if (y==0) {
+		cout << "|";
+	}
+	colorFondo(color);
+	if (tablero[x][y].estado != VACIO) {
+		cout << tablero[x][y].numero;
+	}
+	else {
+		cout << " ";
+	}
+	colorFondo(0);
+	if (y % 3 != 2) {
+		cout << " ";
+	}
+	else{
+		cout << "|";
+	}
+
+	if (x % 3 == 2&&y==8) {
+	cout << endl << "-------------------";
+	}
+	if (y != 8) {
+		y++;
+	}
+	else {
+		cout << endl;
+		y = 0;
+		x++;
+	}
+	if (x != 9) {
+		dibujarTablero(tablero, x, y);
+	}
+	
 }

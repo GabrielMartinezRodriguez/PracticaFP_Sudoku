@@ -17,7 +17,7 @@ bool cargaTablero(const string &fichero, tTablero &tablero); //Carga un tablero 
 void ReajustarPosibles(tTablero &tablero, int fila, int col, int c ,string Modo);
 bool esPosible(tTablero &tablero, int fila, int col, int c);
 // Dibuja el tablero en pantalla
-void dibujarTablero(const tTablero &tablero);
+void dibujarTablero(const tTablero &tablero,int x,int y);
   
 //Coloca c en x, y
 //c, x e y estan 1 y 9

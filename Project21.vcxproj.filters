@@ -62,7 +62,7 @@
     <ClInclude Include="Jugador.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="checkML.h">
+    <ClInclude Include="CheckML.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

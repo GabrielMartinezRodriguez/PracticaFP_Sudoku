@@ -28,7 +28,7 @@ int menuListaSudokus(const tListaSudokus &lista);
 void Insertar(tListaSudokus &lista, const tSudoku &Sudoku, const int Posicion);
 bool operator<(const tSudoku &S1, const tSudoku &S2);
 int buscarPos(const tListaSudokus & lista, const tSudoku &sudoku);
-bool buscarFichero(const tListaSudokus & lista, string nombreFich);
+bool buscarFichero(const tListaSudokus & lista, string nombreFich,int contador);
 bool registrarSudoku(tListaSudokus & lista);
 bool guardar(const tListaSudokus & lista);
 bool BorrarSudoku(tListaSudokus &lista);

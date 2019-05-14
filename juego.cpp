@@ -29,7 +29,7 @@ void mostrarJuego(const tJuego &juego){
 				break;
 		}
     cout<<endl<<endl;
-    dibujarTablero(juego.tablero);
+    dibujarTablero(juego.tablero,0,0);
 }
 //Muestra todas las posibilidades y itera hasta que el usuario le introduzca una opcion posible
 int mostrarMenuJugada(){
